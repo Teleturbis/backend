@@ -17,6 +17,10 @@ app.listen(port, () => {
 
 client.connect();
 
+app.get("/test", (req, res) => {
+  res.send("Hello World! I AM EXISTING!!!");
+});
+
 app.get("/login", (req, res) => {
   let user = req.query.user;
   let pw = req.query.pw;
