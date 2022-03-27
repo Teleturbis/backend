@@ -78,3 +78,23 @@ app.get("/userlist", (req, res) => {
     }
   });
 });
+
+app.get("/chats", (req, res) => {
+  let userid = req.query.user;
+  let partnerid = req.query.partner;
+
+  client.query(
+    `SELECT * FROM public.chats WHERE useridone = '${userid}' OR useridtwo = '${userid}' AND useridone = '${partnerid}' OR useridtwo = '${partnerid}'`,
+    (err, result) => {
+      if (!err) {
+        if (result.rows.length > 0) {
+          res.send(result.rows);
+        } else {
+          res.send("Nothing found");
+        }
+      } else {
+        console.log("ERR:", err);
+      }
+    }
+  );
+});
