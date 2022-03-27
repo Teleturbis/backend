@@ -7,9 +7,7 @@ var cors = require("cors");
 const bcrypt = require("bcrypt");
 
 app.use(bodyParser());
-app.use(
-  cors()
-);
+app.use(cors());
 
 const port = process.env.PORT || 3300;
 
@@ -19,20 +17,26 @@ app.listen(port, () => {
 
 client.connect();
 
-app.post("/newChat", function (request, response) {
-  const user = request.body;
+app.post(
+  "/newChat",
+  cors({
+    origin: "*",
+  }),
+  function (request, response) {
+    const user = request.body;
 
-  client.query(
-    `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
-    (err, res) => {
-      if (!err) {
-        response.send(response);
-      } else {
-        response.send("ERR:", err);
+    client.query(
+      `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
+      (err, res) => {
+        if (!err) {
+          response.send(response);
+        } else {
+          response.send("ERR:", err);
+        }
       }
-    }
-  );
-});
+    );
+  }
+);
 
 app.get("/test", (req, res) => {
   res.send("Hello World! I AM EXISTING!!!");
