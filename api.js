@@ -98,3 +98,29 @@ app.get("/chats", (req, res) => {
     }
   );
 });
+
+app.post("/newUser", function (request, response) {
+  const user = request.body;
+
+  client.query(
+    `SELECT * FROM public.chats WHERE chatid = ${user.chatid}`,
+    (error, result) => {
+      if (!error) {
+        if (result.rows.length > 0) {
+          client.query(
+            `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${chatid}`,
+            (err, res) => {
+              if (!err) {
+                response.send("inserted");
+              } else {
+                console.error("ERR:", err);
+              }
+            }
+          );
+        }
+      } else {
+        console.log("ERR:", error);
+      }
+    }
+  );
+});
