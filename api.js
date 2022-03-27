@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 app.use(bodyParser());
 app.use(
   cors({
-    Origin: '*',
+    origin: '*',
   })
 );
 
