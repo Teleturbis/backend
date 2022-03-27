@@ -68,3 +68,15 @@ app.post("/newUser", function (request, response) {
     );
   });
 });
+
+app.get("/userlist", (res, req) => {
+  console.log("hey");
+  client.query(`SELECT username, userid FROM public."user"`, (err, result) => {
+    if (!err) {
+      res.send(result.rows);
+    } else {
+      console.log("ERR:", err);
+    }
+  });
+  axios.get();
+});
