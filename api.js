@@ -99,7 +99,7 @@ app.get("/chats", (req, res) => {
   );
 });
 
-app.post("/newUser", function (request, response) {
+app.post("/chats", function (request, response) {
   const user = request.body;
 
   client.query(
