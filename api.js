@@ -99,7 +99,7 @@ app.get("/chats", (req, res) => {
   );
 });
 
-app.post("/chats", function (request, response) {
+app.post("/newChat", function (request, response) {
   const user = request.body;
 
   client.query(
@@ -113,13 +113,13 @@ app.post("/chats", function (request, response) {
               if (!err) {
                 response.send("inserted");
               } else {
-                console.error("ERR:", err);
+                response.send("ERR:", err);
               }
             }
           );
         }
       } else {
-        console.log("ERR:", error);
+        response.send("ERR:", error);
       }
     }
   );
