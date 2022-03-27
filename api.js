@@ -102,11 +102,11 @@ app.get("/chats", (req, res) => {
 app.post("/newChat", function (request, response) {
   const user = request.body;
 
-  client.query(
-    `SELECT * FROM public.chats WHERE chatid = ${user.chatid}`,
-    (error, result) => {
-      if (!error) {
-        if (result.rows.length > 0) {
+  // client.query(
+  //   `SELECT * FROM public.chats WHERE chatid = ${user.chatid}`,
+  //   (error, result) => {
+  //     if (!error) {
+  //       if (result.rows.length > 0) {
           client.query(
             `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${chatid}`,
             (err, res) => {
@@ -117,10 +117,10 @@ app.post("/newChat", function (request, response) {
               }
             }
           );
-        }
+        /* }
       } else {
         response.send("ERR:", error);
       }
     }
-  );
+  ); */
 });
