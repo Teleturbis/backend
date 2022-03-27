@@ -102,10 +102,8 @@ app.get("/chats", (req, res) => {
 app.post("/newChat", function (request, response) {
   const user = request.body;
 
-  let json = JSON.stringify(user.prevchat);
-
   client.query(
-    `UPDATE public.chats SET prevchat=${json} WHERE chatid=${user.chatid}`,
+    `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
     (err, res) => {
       if (!err) {
         response.send("inserted");
