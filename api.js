@@ -25,7 +25,7 @@ app.put("/newChat", function (request, response) {
     `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
     async (err, res) => {
       if (!err) {
-        response.send(res);
+        response.send("done");
       } else {
         response.send("ERR:", err);
       }
