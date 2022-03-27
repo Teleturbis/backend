@@ -8,9 +8,7 @@ const bcrypt = require("bcrypt");
 
 app.use(bodyParser());
 app.use(
-  cors({
-    origin: '*',
-  })
+  cors()
 );
 
 const port = process.env.PORT || 3300;
