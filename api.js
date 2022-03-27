@@ -17,7 +17,7 @@ app.listen(port, () => {
 
 client.connect();
 
-app.post("/newChat", cors(), function (request, response) {
+app.post("/newChat", function (request, response) {
   const user = request.body;
 
   client.query(
