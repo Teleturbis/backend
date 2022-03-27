@@ -75,7 +75,7 @@ app.get("/userlist", (res, req) => {
     if (!err) {
       res.send(result.rows);
     } else {
-      console.log("ERR:", err);
+      res.send("ERR:", err);
     }
   });
   axios.get();
