@@ -17,7 +17,7 @@ app.listen(port, () => {
 
 client.connect();
 
-app.post("/newChat", function (request, response) {
+app.put("/newChat", function (request, response) {
   const user = request.body;
 
   client.query(
