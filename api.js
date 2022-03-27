@@ -7,7 +7,7 @@ var cors = require("cors");
 const bcrypt = require("bcrypt");
 
 app.use(bodyParser());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 const port = process.env.PORT || 3300;
 
