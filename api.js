@@ -1,6 +1,7 @@
 const client = require("./connection.js");
 const express = require("express");
 const app = express();
+const contentful = require("contentful");
 
 var bodyParser = require("body-parser");
 var cors = require("cors");
@@ -112,4 +113,17 @@ app.get("/chats", (req, res) => {
       }
     }
   );
+});
+
+app.get("/projects", (req, res) => {
+  const client = contentful.createClient({
+    space: "hxhr2jn34dq3",
+    environment: "master", // defaults to 'master' if not set
+    accessToken: "_wWH78wFKJ8Ayxbq3IJG2JXA4bjjCvDn5H7WZohptvc",
+  });
+
+  client
+    .getEntries()
+    .then((response) => res(response.items))
+    .catch((err) => res.send("ERROR:", err));
 });
