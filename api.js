@@ -21,6 +21,21 @@ app.listen(port, () => {
 
 client.connect();
 
+app.post("/newChat", function (request, response) {
+  const user = request.body;
+
+  client.query(
+    `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
+    (err, res) => {
+      if (!err) {
+        response.send(response);
+      } else {
+        response.send("ERR:", err);
+      }
+    }
+  );
+});
+
 app.get("/test", (req, res) => {
   res.send("Hello World! I AM EXISTING!!!");
 });
@@ -98,21 +113,6 @@ app.get("/chats", (req, res) => {
         }
       } else {
         console.log("ERR:", err);
-      }
-    }
-  );
-});
-
-app.post("/newChat", function (request, response) {
-  const user = request.body;
-
-  client.query(
-    `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
-    (err, res) => {
-      if (!err) {
-        response.send("inserted");
-      } else {
-        response.send("ERR:", err);
       }
     }
   );
