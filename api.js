@@ -7,12 +7,19 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 const bcrypt = require("bcrypt");
 
+const corsOptions = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+};
+
 app.use(bodyParser());
-app.use(cors({ origin: "http://localhost:3006" }));
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3006");
-  next();
-});
+app.use(cors(corsOptions));
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3006");
+//   next();
+// });
 
 const port = process.env.PORT || 3500;
 
