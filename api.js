@@ -9,6 +9,10 @@ const bcrypt = require("bcrypt");
 
 app.use(bodyParser());
 app.use(cors({ origin: "http://localhost:3006" }));
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3006");
+  next();
+});
 
 const port = process.env.PORT || 3500;
 
