@@ -34,7 +34,7 @@ app.put("/newChat", function (request, response) {
 
   console.log("USER: ", user);
 
-  response.send("IM WORKING!!");
+  response.send("IM WORKING!!", user);
 
   /* client.query(
     `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
