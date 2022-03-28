@@ -32,16 +32,20 @@ client.connect();
 app.put("/newChat", function (request, response) {
   const user = request.body;
 
-  client.query(
+  console.log("USER: ", user);
+
+  response.send("IM WORKING!!");
+
+  /* client.query(
     `UPDATE public.chats SET prevchat=${user.prevchat} WHERE chatid=${user.chatid}`,
-    async (err, res) => {
+    (err, res) => {
       if (!err) {
         response.send("done");
       } else {
         response.send("ERR:", err);
       }
     }
-  );
+  ); */
 });
 
 app.get("/test", (req, res) => {
