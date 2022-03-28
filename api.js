@@ -8,9 +8,9 @@ var cors = require("cors");
 const bcrypt = require("bcrypt");
 
 app.use(bodyParser());
-app.use(cors());
+app.use(cors({"Acces-Control-Allow-Origin": "*"}));
 
-const port = process.env.PORT || 3300;
+const port = process.env.PORT || 3500;
 
 app.listen(port, () => {
   console.log("Server is listening at port 3300");
@@ -115,7 +115,7 @@ app.get("/chats", (req, res) => {
   );
 });
 
-app.get("/projects", async (req, res) => {
+app.get("/projects", cors({ origin: "*" }), async (req, res) => {
   const client = contentful.createClient({
     space: "hxhr2jn34dq3",
     environment: "master",
